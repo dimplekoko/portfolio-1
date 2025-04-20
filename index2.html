@@ -1,0 +1,319 @@
+/*
+Project Structure:
+
+my-website/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── script.js
+│   └── scroll-reveal.js
+└── images/
+    ├── hero.png
+    ├── about.png
+    ├── services.png
+    └── gallery1.png, gallery2.png, ...
+
+Place your exported Canva images inside the `images/` folder.
+*/
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <a href="#hero" class="logo">Brand</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Get Started</a>
+      <button class="mobile-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="section hero">
+    <div class="hero-content">
+      <h1>Your Title Here</h1>
+      <p>Your subtitle or description.</p>
+      <a href="#contact" class="btn btn-primary">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About</h2>
+      <img src="images/about.png" alt="About Image">
+      <p>Describe your mission or story here.</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Services</h2>
+      <img src="images/services.png" alt="Services Image">
+      <p>Details about the services you offer.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="images/gallery1.png" alt="Gallery Image">
+        <img src="images/gallery2.png" alt="Gallery Image">
+        <img src="images/gallery3.png" alt="Gallery Image">
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2>Testimonials</h2>
+      <blockquote>
+        <p>"Your customers' feedback goes here."</p>
+        <footer>— Customer Name</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Contact / Get Started Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Get Started</h2>
+      <p>Include your contact form or call to action here.</p>
+      <form action="#" method="POST">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+</body>
+</html>
+
+/* css/style.css */
+:root {
+  --primary-color: #FF6B6B;   /* main buttons, links */
+  --secondary-color: #4ECDC4; /* section accents, hover */
+  --accent-color: #FFE66D;    /* highlights, badges */
+  --bg-color: #F7FFF7;        /* page background */
+  --text-color: #333333;      /* default text */
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background: var(--bg-color);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.mobile-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hero {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  color: white;
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 600px;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#about {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+#services {
+  background: var(--secondary-color);
+  color: white;
+}
+
+#gallery {
+  background: #ffffff;
+}
+
+#testimonials {
+  background: var(--accent-color);
+  color: var(--text-color);
+}
+
+#contact {
+  background: #ffffff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+form input,
+form button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+form button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+/* js/script.js */
+const toggle = document.querySelector('.mobile-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+/* js/scroll-reveal.js */
+const sections = document.querySelectorAll('.section');
+const revealOnScroll = () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.classList.add('is-visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
