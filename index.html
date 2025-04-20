@@ -5,8 +5,14 @@ my-website/
 ├── index.html
 ├── css/
 │   └── style.css
-└── js/
-    └── script.js
+├── js/
+│   ├── script.js
+│   └── scroll-reveal.js
+└── images/
+    ├── hero.png
+    ├── about.png
+    ├── services.png
+    └── gallery1.png, gallery2.png, ...
 
 Place your exported Canva images inside an `images/` folder parallel to `css/` and `js/`, e.g.:
 images/hero.png, images/about.png, images/services.png, etc.
@@ -18,7 +24,7 @@ images/hero.png, images/about.png, images/services.png, etc.
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Porfolio-1</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -109,10 +115,11 @@ images/hero.png, images/about.png, images/services.png, etc.
 
 /* css/style.css */
 :root {
-  --primary-color: #d8a7b1; /* Nude pink */
-  --accent-color: #8c7bb5;  /* Soft purple */
-  --bg-color: #f9f7f7;
-  --text-color: #333;
+  --primary-color: #FF6B6B; /* main buttons, links */
+  --secondary-color: #4ECDC4; /* section accents, hover */
+  --accent-color: #FFE66D;  /* highlights, badges*/
+  --bg-color: #F7FFF7;      /*page backgroung */
+  --text-color: #333333;    /*default text */
   --font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -182,31 +189,65 @@ body {
 }
 
 .section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
   padding: 4rem 2rem;
   text-align: center;
+ 
 }
 
-.hero {
-  position: relative;
-  color: white;
+.section.is-visible {
+   opacity: 1;
+   transform: translateY(0);
 }
 
-.hero-bg {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+#hero {
+   background: lonear-gradient(
+      135deg,
+      var(--primary-color) 0%
+      var(--secondary-color) 100%
+);
+color: white;
+position: relative;
+min-height: 80vh;
+display: flex;
+align-items: center;
+justify-content: center;
 }
+
 
 .hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: 600px;
+  padding: 1rem;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+#about {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+#services {
+  background: var(--secondary-color);
+  color: white;
+}
+
+#gallery {
+  background: #ffffff;
+}
+
+#testimonials {
+  background: var(--accent-color);
+  color: var(--text-color);
+}
+
+#contact {
+  background: #ffffff;
 }
 
 .gallery-grid {
@@ -241,6 +282,9 @@ form button {
     right: 0;
     width: 100%;
   }
+  .nav-links.show {
+    display: flex;
+  }
   .mobile-toggle {
     display: block;
   }
@@ -253,3 +297,18 @@ const navLinks = document.querySelector('.nav-links');
 toggle.addEventListener('click', () => {
   navLinks.classList.toggle('show');
 });
+
+/* js/scroll-reveal.js */
+const sections = document.querySelectorAll('.section');
+const revealOnScroll = () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.classList.add('is-visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
+
+
